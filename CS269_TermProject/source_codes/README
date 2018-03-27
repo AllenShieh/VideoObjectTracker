@@ -1,0 +1,6 @@
+Environment Requirements
+Python 2.7, OpenCV 2.4.x, Numpy and any dependent packages.
+
+Execution Script
+Linux: python infra.py
+Windows: py -2.7 infra.py
