@@ -12,6 +12,7 @@
 # bounding box + background subtraction + contour
 # subarea()
 # findContour()
+
 import cv2
 import numpy as np
 from load_frameInfo import loadInfo
@@ -48,6 +49,7 @@ while True:
         if len(contours) > 0:
             cv2.drawContours(frame2, contours, -1, (0,255,0), 2)
 
+
         for i in range(len(boundingBoxes)):
             boundingBox = boundingBoxes[i]
             x = boundingBox[0] / 2
@@ -64,13 +66,13 @@ while True:
                     frame1[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3] = subArea
 
             # frame3 subarea + background + contour
-            subArea = frame3[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3]
-            subMask = fgbg.apply(subArea)
-            if (subArea.size > 0):
-                subContours, _ = cv2.findContours(subMask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-                if len(subContours) > 0:
-                    cv2.drawContours(subArea, subContours, -1, (0,255,0), 2)
-                    frame3[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3] = subArea
+            #subArea = frame3[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3]
+            #subMask = fgbg.apply(subArea)
+            #if (not subMask or subMask.size > 0):
+            #    subContours, _ = cv2.findContours(subMask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            #    if len(subContours) > 0:
+            #        cv2.drawContours(subArea, subContours, -1, (0,255,0), 2)
+            #        frame3[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3] = subArea
 
             # frame4 background + subarea + contour
             subArea = frame4[max(y, 0):min(Height, y+h), max(0, x): min(Width, x+w), 0:3]
